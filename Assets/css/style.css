@@ -1,0 +1,45 @@
+:root{
+    --primary-color:#604675;
+}
+
+body {
+    font-family:'Times New Roman', Times, serif;
+}
+header {
+display: flex;
+flex: wrap;
+justify-content: space-between;
+align-items:initial;
+color: var(--primary-color);
+font-size: 30px;
+}
+header .timer{
+    color: black;
+    margin: 0px;
+}
+.card-container{
+    display: block;
+    margin: 80px auto;
+    padding: 0px 90px;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 var(--primary-color);
+    transition: 0.3s;
+    width: 40vw;    
+}
+h1 {
+    font-size: 2em;
+}
+
+.card-intro p {
+    font-size: 1.2em;
+    
+}
+button {
+    padding: 5px;
+    margin: 24px;
+    cursor: pointer;
+    font-size: 15px;
+    background-color:var(--primary-color);
+    color: white;
+    border-radius: 10px;
+}

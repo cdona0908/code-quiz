@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="./Assets/css/style.css">
+</head>
+<body>
+<header>
+    <div class="highscores">
+        View HighScores
+    </div>
+    <p id=time class="timer">Time:<span id="timeSpan"></span></p>        
+    
+</header>
+<!--Card Container-->
+<section class="card-container">
+ <!--Quiz Intro-->
+    <section class="card-intro" id="intro">
+        <h1>
+            Coding Quiz Challenge
+        </h1>
+        <p>
+            Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!
+        </p>
+        <button id="btn-start"> Start Quiz</button>
+    </section>
+
+ <!--Quiz Questions-->
+    <section class="quiz" id="quiz">
+        <h2 class="question" id="question"></h2>
+        <div class="list-answers" id="answers"></div>
+        <div class="message" id="message"></div>
+    </section>
+
+ <!--All Done-->
+    <section id="allDone">
+        <h3>All Done!</h3>
+        <h4>Your final score is <span id="finalScore">xx</span>"</h4>
+        <form class="form-inline">
+            <h5>Enter initials:</h5>
+            <input
+            class="form"
+            type="text"
+            id="initials"
+            placeholder="Enter your initials"
+            />
+            <button type="submit" id="submit">
+                Submit
+            </button>
+        </form>
+    </section>
+ <!--HighScores-->
+    <section id="highScores">
+        <h2>HighScores</h2>
+        <div class="highScoresContainer">
+            <ol class="list-group" id="highScoresList"></ol>
+        </div>
+        <button type="button" class="btn-back">Go Back</button>
+        <button type="button" class="btn-clear">Clear HighScores</button>
+
+    </section>
+
+<section>
+    
+<script src="./Assets/js/script.js"></script>    
+</body>
+</html>
