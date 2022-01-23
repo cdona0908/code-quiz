@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <div class="highscores">
+    <div class="highscores" id="view-scores">
         View HighScores
     </div>
     <p id=time class="timer">Time:<span id="timeSpan"></span></p>        
@@ -25,20 +25,27 @@
         <p>
             Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!
         </p>
-        <button id="btn-start"> Start Quiz</button>
+        <button id="btn-start" type="button"> Start Quiz</button>
     </section>
 
  <!--Quiz Questions-->
-    <section class="quiz" id="quiz">
+    <section class="quiz" id="quiz-questions">
         <h2 class="question" id="question"></h2>
-        <div class="list-answers" id="answers"></div>
-        <div class="message" id="message"></div>
+        <ul>
+            <li><button id="answer1" value="0" class="answers">Answer1</button></li>
+            <li><button id="answer2" value="1" class="answers">Answer1</button></li>
+            <li><button id="answer3" value="2" class="answers">Answer1</button></li>
+            <li><button id="answer4" value="3" class="answers">Answer1</button></li>
+        </ul>
+        <div class="message" id="message">
+            <hr>
+        </div>
     </section>
 
  <!--All Done-->
     <section id="allDone">
         <h3>All Done!</h3>
-        <h4>Your final score is <span id="finalScore">xx</span>"</h4>
+        <h4>Your final score is: <span id="score">0</span>"</h4>
         <form class="form-inline">
             <h5>Enter initials:</h5>
             <input
@@ -56,10 +63,10 @@
     <section id="highScores">
         <h2>HighScores</h2>
         <div class="highScoresContainer">
-            <ol class="list-group" id="highScoresList"></ol>
+            <ol id="score-list" class="highScoresList"></ol>
         </div>
-        <button type="button" class="btn-back">Go Back</button>
-        <button type="button" class="btn-clear">Clear HighScores</button>
+        <button type="button" id="btn-back">Go Back</button>
+        <button type="button" id="btn-clear">Clear HighScores</button>
 
     </section>
 
