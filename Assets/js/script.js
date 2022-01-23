@@ -35,7 +35,7 @@ var scoreList = [];
 // start
 var startBtn = document.querySelector("#btn-start");
 // answer button class
-var ansBtn = document.querySelectorAll("button.ansBtn")
+var ansBtn = document.querySelectorAll("button.answers")
 // answer1
 var ans1Btn = document.querySelector("#answer1");
 // answer2
@@ -59,31 +59,31 @@ var questions = [ // array of objects
         // question 0
         question: "Commonly used data types do NOT include:",
         answers: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
-        correctAnswer: "2"
+        solution: "2"
     },
     {
         // question 1
         question: "The condition in an if / else statement is enclosed within ____.",
         answers: ["1. quotes", "2. curly brackets", "3. parentheses", "4. square brackets"],
-        correctAnswer: "2"
+        solution: "2"
     },
     {
         // question 2
         question: "Arrays in Javascript can be used to store ____.",
         answers: ["1. numbers and strings", "2. other arrays", "3. booleans", "4. all of the above"],
-        correctAnswer: "3"
+        solution: "3"
     },
     {
         // question 3
         question: "String values must be enclosed within ____ when being assigned to variables.",
         answers: ["1. commmas", "2. curly brackets", "3. quotes", "4. parentheses"],
-        correctAnswer: "2"
+        solution: "2"
     },
     {
         // question 4
         question: "A very useful tool used during development and debugging for printing content to the debugger is:",
         answers: ["1. Javascript", "2. terminal/bash", "3. for loops", "4. console.log"],
-        correctAnswer: "3"
+        solution: "3"
     }
 ];
 //------------Functions----------------//
@@ -111,5 +111,46 @@ function quizInit(){
     showQuestion(questionCount);
 }
 
-
+//function can be reduced with for loop but couldn't make it work on time
+function showQuestion(questionNumber){
+    if (questionNumber < questions.length){
+        questionItem.textContent = questions[questionNumber].question;
+        ans1Btn.textContent = questions[questionNumber].answers[0];
+        ans2Btn.textContent = questions[questionNumber].answers[1];
+        ans3Btn.textContent = questions[questionNumber].answers[2];
+        ans4Btn.textContent = questions[questionNumber].answers[3];
+    }
+}
+//Verify if answer right ot wrong and the go to next question
+function verifyAnswer(event){
+    event.preventDefault();
+    //display right or wrong message
+    rgMessage.style.display = "block";
+    var p = document.createElement("p");
+    rgMessage.appendChild(p);
+    setTimeout(function(){
+        p.style.display = "none";
+    }, 1000);
+    //verify if answer is correct
+    if(questions[questionCount].solution === event.target.value){
+        p.textContent = "Correct!";        
+    } else if (questions[questionCount].solution !== event.target.value){
+        p.textContent = "Wrong!";
+        timeCount = timeCount - 10;
+    }
+    //increase question counter by 1 to go to the next question
+    if (questionCount < questions.length){
+        questionCount++;
+    }
+    showQuestion(questionCount);
+}
 //--------------- Event Listeners---------------//
+
+//Start Quiz
+startBtn.addEventListener("click",quizInit);
+//Verify Answers Selected
+ansBtn.forEach(item =>{
+    item.addEventListener("click",verifyAnswer);
+    console.log(item);
+});
+
