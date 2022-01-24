@@ -34,9 +34,13 @@ The following animation demonstrates the application functionality:
 
 You are required to submit the following for review:
 
-* The URL of the functional, deployed application.
+* The URL of the functional, deployed application:
+
+https://cdona0908.github.io/code-quiz/
 
 * The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+
+https://github.com/cdona0908/code-quiz.git 
 
 ---
 © 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
