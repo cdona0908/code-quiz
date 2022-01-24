@@ -1,5 +1,6 @@
 :root{
     --primary-color:#604675;
+    --secondary-color: rgb(139, 105, 172);
 }
 
 body {
@@ -11,7 +12,7 @@ flex: wrap;
 justify-content: space-between;
 align-items:initial;
 color: var(--primary-color);
-font-size: 30px;
+font-size: 25px;
 }
 header .timer{
     color: black;
@@ -22,7 +23,6 @@ header .timer{
     margin: 80px auto;
     padding: 0px 90px;
     text-align: center;
-    box-shadow: 0 4px 8px 0 var(--primary-color);
     transition: 0.3s;
     width: 40vw;    
 }
@@ -34,6 +34,11 @@ h1 {
     font-size: 1.2em;
     
 }
+
+#quiz-questions, #allDone, #highScores, #message {
+    display: none;  
+} 
+
 button {
     padding: 5px;
     margin: 24px;
@@ -42,4 +47,16 @@ button {
     background-color:var(--primary-color);
     color: white;
     border-radius: 10px;
+}
+
+button:hover{
+opacity: 0.6;
+}
+
+ul.no-bullets{
+    list-style-type: none; 
+}
+
+ul{
+    text-align: left;
 }

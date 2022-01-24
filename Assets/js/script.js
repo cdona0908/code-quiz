@@ -144,6 +144,42 @@ function verifyAnswer(event){
     }
     showQuestion(questionCount);
 }
+
+function addHighScore(event){
+    event.preventDefault();
+    endOfGame.style.display ="none";
+    highscoresEl.style.display ="block";
+    scoreList.push({
+        initials: initialsInput,
+        score: timeCount
+    });
+    scoreListEl.innerHTML="";
+    for( i=0; i<scoreList.length;i++){
+        var scoreItem = document.createElement("li");
+        scoreItem.textContent = `${scoreList[i].initials}: ${scoreList[i].score}`;
+        scoreListEl.append(scoreItem);       
+    
+    }
+    saveScores();
+    showScores();
+}
+
+function saveScores(){
+    localStorage.setItem("scoreList", JSON.stringify(scoreList));
+}
+
+function showScores(){
+    var storedHighScores = JSON.parse(localStorage.getItem("scoreList"));
+    if (storedHighScores !== null){
+        scoreList = storedHighScores;
+    }
+}
+
+function clearScores(){
+    localStorage.clear();
+    scoreListEl.innerHTML="";
+}
+
 //--------------- Event Listeners---------------//
 
 //Start Quiz
@@ -151,6 +187,28 @@ startBtn.addEventListener("click",quizInit);
 //Verify Answers Selected
 ansBtn.forEach(item =>{
     item.addEventListener("click",verifyAnswer);
-    console.log(item);
+});
+//submit score
+submitScrBtn.addEventListener("click", addHighScore);
+
+// Back Button
+goBackBtn.addEventListener("click", function(){
+    highscoresEl.style.display = "none";
+    introEl.style.display = "block";
+    timeCount = 75;
+    timeEl.textContent = `Time:${timeCount}s`;
+});
+//Clear Scores Button
+
+clearScrBtn.addEventListener("click",clearScores);
+
+viewScrBtn.addEventListener("click",function(){
+    if(highscoresEl.style.display === "none"){
+        highscoresEl.style.display = "block";
+    }else if (highscoresEl.style.display === "block"){
+        highscoresEl.style.display = "none";
+    } else {
+        return alert ("No scores to show.");
+    }
 });
 
