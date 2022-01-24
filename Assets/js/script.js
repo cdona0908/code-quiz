@@ -1,59 +1,38 @@
-//Global Variables and Query Selectors
+//----------Query Selectors------------//
 
-// time and score
 var timeEl = document.querySelector("#timeSpan");
-var timeCount = 75;
 var scoreEl = document.querySelector("#score");
-
-// sections
-// section intro
 var introEl = document.querySelector("#intro");
-
-// section questions
-//question section
 var questionsEl = document.querySelector("#quiz-questions");
-//where question goes
 var questionItem = document.querySelector("#question");
-// how many questions they have answered
-var questionCount = 0;
-// div display if question is right or wrong
+// div element display if question is right or wrong
 var rgMessage = document.querySelector("#message");
-
-// section final
 var endOfGame = document.querySelector("#allDone");
-// user initials
 var userInitials = document.querySelector("#initials");
-
-// section highscores
 var highScoresSection = document.querySelector("#highScores");
-// ordered list
 var scoreListEl = document.querySelector("#score-list");
+// Buttons Selectors
+var startBtn = document.querySelector("#btn-start");
+var answerBtn = document.querySelectorAll("button.answers");
+var ans1Btn = document.querySelector("#answer1");
+var ans2Btn = document.querySelector("#answer2");
+var ans3Btn = document.querySelector("#answer3");
+var ans4Btn = document.querySelector("#answer4");
+var submitHighScore = document.querySelector("#submit");
+var backBtn = document.querySelector("#btn-back");
+var clearBtn = document.querySelector("#btn-clear");
+var viewScores = document.querySelector("#view-scores");
+
+//----------- Global Variables-----------//
+
+//timer counter
+var timeCount = 75;
+// counts number of questions
+var questionCount = 0;
 // array of scores
 var scoreList = [];
 
-// buttons
-// start
-var startBtn = document.querySelector("#btn-start");
-// answer button class
-var ansBtn = document.querySelectorAll("button.answers")
-// answer1
-var ans1Btn = document.querySelector("#answer1");
-// answer2
-var ans2Btn = document.querySelector("#answer2");
-// answer3
-var ans3Btn = document.querySelector("#answer3");
-// answer4
-var ans4Btn = document.querySelector("#answer4");
-// submit-score
-var submitHighScore = document.querySelector("#submit");
-// goback
-var backBtn = document.querySelector("#btn-back");
-// clearscores
-var clearBtn = document.querySelector("#btn-clear");
-// view-scores
-var scoreBtn = document.querySelector("#view-scores");
-
-// Object for question, answer, true/false
+// Object for questions
 var questions = [ // array of objects
     {
         // question 0
@@ -88,8 +67,17 @@ var questions = [ // array of objects
 ];
 //------------Functions----------------//
 
-//Timer
+//Start Quiz
+function quizInit(){
+    introEl.style.display = "none";
+    questionsEl.style.display = "block";
+    questionCount = 0;
+    userInitials.value ="";
+    timeInit();
+    showQuestion(questionCount);
+}
 
+//Timer
 function timeInit(){
     var timer = setInterval(function(){
         timeCount --;
@@ -102,15 +90,7 @@ function timeInit(){
         }   
     },1000); 
 }
-
-function quizInit(){
-    introEl.style.display = "none";
-    questionsEl.style.display = "block";
-    questionCount = 0;
-    timeInit();
-    showQuestion(questionCount);
-}
-
+// Display question and posible answers
 //function can be reduced with for loop but couldn't make it work on time
 function showQuestion(questionNumber){
     if (questionNumber < questions.length){
@@ -121,10 +101,10 @@ function showQuestion(questionNumber){
         ans4Btn.textContent = questions[questionNumber].answers[3];
     }
 }
-//Verify if answer right ot wrong and the go to next question
+//Verify if answer right ot wrong and then go to the next question
 function verifyAnswer(event){
-    event.preventDefault();
-    //display right or wrong message
+    
+    //Message holder to display right or wrong
     rgMessage.style.display = "block";
     var p = document.createElement("p");
     rgMessage.appendChild(p);
@@ -145,12 +125,14 @@ function verifyAnswer(event){
     showQuestion(questionCount);
 }
 
+// Submit HighScore
 function addHighScore(event){
-    //event.preventDefault();
+    event.preventDefault();
     endOfGame.style.display ="none";
     highScoresSection.style.display ="block";
+    
     scoreList.push({
-        initials: userInitials,
+        initials: userInitials.value,
         score: timeCount
     });
     scoreListEl.innerHTML="";
@@ -164,17 +146,19 @@ function addHighScore(event){
     showScores();
 }
 
+//Save Scores in HighScore List
 function saveScores(){
     localStorage.setItem("scoreList", JSON.stringify(scoreList));
 }
 
+// Display HighScore list
 function showScores(){
     var storedHighScores = JSON.parse(localStorage.getItem("scoreList"));
     if (storedHighScores !== null){
         scoreList = storedHighScores;
     }
 }
-
+// Clear HighScore list
 function clearScores(){
     localStorage.clear();
     scoreListEl.innerHTML="";
@@ -185,10 +169,10 @@ function clearScores(){
 //Start Quiz
 startBtn.addEventListener("click",quizInit);
 //Verify Answers Selected
-ansBtn.forEach(item =>{
+answerBtn.forEach(item =>{
     item.addEventListener("click",verifyAnswer);
 });
-//submit score
+//Submit Highscore
 submitHighScore.addEventListener("click", addHighScore);
 
 // Back Button
@@ -198,17 +182,18 @@ backBtn.addEventListener("click", function(){
     timeCount = 75;
     timeEl.textContent = `Time:${timeCount}s`;
 });
-//Clear Scores Button
 
+//Clear Scores Button
 clearBtn.addEventListener("click",clearScores);
 
-scoreBtn.addEventListener("click",function(){
+//Show HighScore List
+viewScores.addEventListener("click",function(){
     if(highScoresSection.style.display === "none"){
         highScoresSection.style.display = "block";
     }else if (highScoresSection.style.display === "block"){
         highScoresSection.style.display = "none";
     } else {
-        return alert ("No scores to show.");
+        return alert ("There are no Highscores to show yet.");
     }
 });
 
