@@ -32,10 +32,10 @@
     <section class="quiz" id="quiz-questions">
         <h2 class="question" id="question"></h2>
         <ul class="no-bullets">
-            <li><button id="answer1" value="0" class="answers">Answer1</button></li>
-            <li><button id="answer2" value="1" class="answers">Answer1</button></li>
-            <li><button id="answer3" value="2" class="answers">Answer1</button></li>
-            <li><button id="answer4" value="3" class="answers">Answer1</button></li>
+            <li><button id="answer1" value="0" class="answers"></button></li>
+            <li><button id="answer2" value="1" class="answers"></button></li>
+            <li><button id="answer3" value="2" class="answers"></button></li>
+            <li><button id="answer4" value="3" class="answers"></button></li>
         </ul>
         <div class="message" id="message">
             <hr>
@@ -46,18 +46,11 @@
     <section id="allDone">
         <h3>All Done!</h3>
         <h4>Your final score is: <span id="score"></span></h4>
-        <form class="form-inline">
-            <h5>Enter initials:</h5>
-            <input
-            class="form"
-            type="text"
-            id="initials"
-            placeholder="Enter your initials"
-            />
+        <p> Enter initials: <input id="initials" placeholder="Enter your initials"/>
             <button type="submit" id="submit">
                 Submit
             </button>
-        </form>
+        </p>
     </section>
  <!--HighScores-->
     <section id="highScores">

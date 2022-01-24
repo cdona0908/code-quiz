@@ -20,12 +20,12 @@ var questionCount = 0;
 var rgMessage = document.querySelector("#message");
 
 // section final
-var endOfGame = document.querySelector("#AllDone");
+var endOfGame = document.querySelector("#allDone");
 // user initials
-var initialsInput = document.querySelector("#initials");
+var userInitials = document.querySelector("#initials");
 
 // section highscores
-var highscoresEl = document.querySelector("#highscores");
+var highScoresSection = document.querySelector("#highScores");
 // ordered list
 var scoreListEl = document.querySelector("#score-list");
 // array of scores
@@ -45,13 +45,13 @@ var ans3Btn = document.querySelector("#answer3");
 // answer4
 var ans4Btn = document.querySelector("#answer4");
 // submit-score
-var submitScrBtn = document.querySelector("#submit");
+var submitHighScore = document.querySelector("#submit");
 // goback
-var goBackBtn = document.querySelector("#btn-back");
+var backBtn = document.querySelector("#btn-back");
 // clearscores
-var clearScrBtn = document.querySelector("#btn-clear");
+var clearBtn = document.querySelector("#btn-clear");
 // view-scores
-var viewScrBtn = document.querySelector("#view-scores");
+var scoreBtn = document.querySelector("#view-scores");
 
 // Object for question, answer, true/false
 var questions = [ // array of objects
@@ -94,7 +94,7 @@ function timeInit(){
     var timer = setInterval(function(){
         timeCount --;
         timeEl.textContent = timeCount;
-        if (timeCount === 0 || questionCount===questions.length){
+        if (timeCount === 0 || questionCount === questions.length){
             clearInterval(timer);
             questionsEl.style.display = "none";
             endOfGame.style.display ="block";
@@ -146,11 +146,11 @@ function verifyAnswer(event){
 }
 
 function addHighScore(event){
-    event.preventDefault();
+    //event.preventDefault();
     endOfGame.style.display ="none";
-    highscoresEl.style.display ="block";
+    highScoresSection.style.display ="block";
     scoreList.push({
-        initials: initialsInput,
+        initials: userInitials,
         score: timeCount
     });
     scoreListEl.innerHTML="";
@@ -189,24 +189,24 @@ ansBtn.forEach(item =>{
     item.addEventListener("click",verifyAnswer);
 });
 //submit score
-submitScrBtn.addEventListener("click", addHighScore);
+submitHighScore.addEventListener("click", addHighScore);
 
 // Back Button
-goBackBtn.addEventListener("click", function(){
-    highscoresEl.style.display = "none";
+backBtn.addEventListener("click", function(){
+    highScoresSection.style.display = "none";
     introEl.style.display = "block";
     timeCount = 75;
     timeEl.textContent = `Time:${timeCount}s`;
 });
 //Clear Scores Button
 
-clearScrBtn.addEventListener("click",clearScores);
+clearBtn.addEventListener("click",clearScores);
 
-viewScrBtn.addEventListener("click",function(){
-    if(highscoresEl.style.display === "none"){
-        highscoresEl.style.display = "block";
-    }else if (highscoresEl.style.display === "block"){
-        highscoresEl.style.display = "none";
+scoreBtn.addEventListener("click",function(){
+    if(highScoresSection.style.display === "none"){
+        highScoresSection.style.display = "block";
+    }else if (highScoresSection.style.display === "block"){
+        highScoresSection.style.display = "none";
     } else {
         return alert ("No scores to show.");
     }

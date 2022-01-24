@@ -1,6 +1,6 @@
 :root{
     --primary-color:#604675;
-    --secondary-color: rgb(139, 105, 172);
+    --secondary-color: rgb(215, 197, 233);
 }
 
 body {
@@ -59,4 +59,7 @@ ul.no-bullets{
 
 ul{
     text-align: left;
+}
+div .highScoresList{
+    background-color: var(--secondary-color);
 }
